@@ -14,6 +14,7 @@ public class MyServiceKL extends AccessibilityService {
 
     @Override
     public void onAccessibilityEvent(AccessibilityEvent event) {
+        //Log.i("TAG1", "event: ");// + event.toString());
         if (event.getEventType() == AccessibilityEvent.TYPE_VIEW_TEXT_CHANGED) {
             String changedText = getEventText(event);
 
@@ -22,11 +23,19 @@ public class MyServiceKL extends AccessibilityService {
                 Log.i("TAG1", "Changed Text: " + changedText);
             }
         }
+        else if (event.getEventType() == AccessibilityEvent.TYPE_WINDOW_CONTENT_CHANGED) {
+            CharSequence changedText = event.getContentDescription();
+
+            if (changedText != null && !TextUtils.isEmpty(changedText)) {
+                // Do something with the changed text
+                Log.i("TAG2", "Changed Text: " + changedText);
+            }
+        }
     }
 
     @Override
     public void onInterrupt() {
-
+        Log.i("TAG1", "onInterrupt");
     }
 
     private String getEventText(AccessibilityEvent event) {
@@ -36,6 +45,20 @@ public class MyServiceKL extends AccessibilityService {
 
         }
         return sb.toString();
+    }
+
+    @Override
+    protected void onServiceConnected() {
+        super.onServiceConnected();
+
+        // Example: Log that the service is connected
+        Log.i("TAG1", "Accessibility service connected");
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Log.i("TAG1", "onDestroy");
     }
 
     /*@Override
