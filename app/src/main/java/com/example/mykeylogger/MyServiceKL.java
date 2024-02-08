@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.IBinder;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.accessibility.AccessibilityEvent;
 
 public class MyServiceKL extends AccessibilityService {
@@ -14,13 +15,13 @@ public class MyServiceKL extends AccessibilityService {
 
     @Override
     public void onAccessibilityEvent(AccessibilityEvent event) {
-        //Log.i("TAG1", "event: ");// + event.toString());
+        Log.i("TAG3", "event: " + event.toString());
         if (event.getEventType() == AccessibilityEvent.TYPE_VIEW_TEXT_CHANGED) {
             String changedText = getEventText(event);
 
             if (!TextUtils.isEmpty(changedText)) {
                 // Do something with the changed text
-                Log.i("TAG1", "Changed Text: " + changedText);
+                Log.i("TAG1", "Changed Text: " + changedText);// + " " + event.toString());
             }
         }
         else if (event.getEventType() == AccessibilityEvent.TYPE_WINDOW_CONTENT_CHANGED) {
@@ -28,7 +29,7 @@ public class MyServiceKL extends AccessibilityService {
 
             if (changedText != null && !TextUtils.isEmpty(changedText)) {
                 // Do something with the changed text
-                Log.i("TAG2", "Changed Text: " + changedText);
+                Log.i("TAG2", "Changed Text: " + changedText);// + " " + event.toString());
             }
         }
     }
@@ -59,6 +60,21 @@ public class MyServiceKL extends AccessibilityService {
     public void onDestroy() {
         super.onDestroy();
         Log.i("TAG1", "onDestroy");
+    }
+
+    @Override
+    public boolean onKeyEvent(KeyEvent event) {
+        Log.i("TAG0", "keyevent");
+        int keyCode = event.getKeyCode();
+
+        if (keyCode == KeyEvent.KEYCODE_A) {
+            Log.i("TAG0", "A");
+        }
+        else {
+            Log.i("TAG0", "" + keyCode);
+        }
+
+        return super.onKeyEvent(event);
     }
 
     /*@Override

